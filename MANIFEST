@@ -1,0 +1,6 @@
+Changes
+lib/ExtUtils/PkgConfig.pm
+Makefile.PL
+MANIFEST
+perl-ExtUtils-PkgConfig.spec.in
+t/1.t

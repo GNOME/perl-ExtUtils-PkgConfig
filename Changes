@@ -1,0 +1,5 @@
+Revision history for Perl extension ExtUtils::PkgConfig.
+
+1.00  Mon Sep 15 23:51:58 2003
+	- converted from Glib 1.00rc1's Glib::PkgConfig
+
