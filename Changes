@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.06  Sun Sep 19 23:29:23 CEST 2004
+	- Remove the "found package ..." message to make Makefile.PL's less
+	  verbose.
+
 1.05  Fri Jul 16 14:52:39 EDT 2004
 	- add configure-time check for pkg-config, don't build without it.
 	- add a pointer to pkg-config's webpage in the docs.
