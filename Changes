@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.04  Fri Mar  5 00:28:59 EST 2004
+	- add long-overdue version-checking import implementation.
+
 1.03  Thu Feb 05 22:16:44 2004
 	- add two new functions: create_version_macros and
 	  write_version_macros.

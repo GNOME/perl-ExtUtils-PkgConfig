@@ -23,7 +23,14 @@ use Carp;
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.03';
+$VERSION = '1.04';
+
+sub import {
+	my $class = shift;
+	return unless @_;
+        die "$class version $_[0] is required--this is only version $VERSION"
+		if $VERSION < $_[0];
+}
 
 sub AUTOLOAD 
 {
