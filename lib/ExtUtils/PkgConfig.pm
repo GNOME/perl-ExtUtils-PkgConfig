@@ -1,4 +1,4 @@
-# Copyright (c) 2003 by the gtk2-perl team (see the file AUTHORS)
+# Copyright (c) 2003-2004 by the gtk2-perl team (see the file AUTHORS)
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Library General Public
@@ -23,7 +23,7 @@ use Carp;
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.04';
+$VERSION = '1.05';
 
 sub import {
 	my $class = shift;
@@ -254,13 +254,16 @@ the various modules of the gtk2-perl project.
 
   L<http://gtk2-perl.sourceforge.net/>
 
+This module is really just an interface to the pkg-config utility program.
+http://www.freedesktop.org/Software/pkgconfig
+
 =head1 AUTHORS
 
 muppet E<lt>scott at asofyet dot orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2003 by muppet, Ross McFarland, and the gtk2-perl team
+Copyright 2003-2004 by muppet, Ross McFarland, and the gtk2-perl team
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the Lesser General Public License (LGPL).  For

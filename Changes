@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.05  Fri Jul 16 14:52:39 EDT 2004
+	- add configure-time check for pkg-config, don't build without it.
+	- add a pointer to pkg-config's webpage in the docs.
+
 1.04  Fri Mar  5 00:28:59 EST 2004
 	- add long-overdue version-checking import implementation.
 

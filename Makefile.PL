@@ -1,6 +1,13 @@
 use 5.006;
 use ExtUtils::MakeMaker;
 
+# don't go any further if pkg-config cannot be found.
+`pkg-config --version` or die "***
+*** ExtUtils::PkgConfig requires the pkg-config utility, but it doesn't
+*** seem to be in your PATH.  it is correctly installed?
+***  PATH=$ENV{PATH}
+***\n";
+
 WriteMakefile(
     'dist' => {
            PREOP    => 'pod2text lib/ExtUtils/PkgConfig.pm | tee README >$(DISTVNAME)/README; chmod -R u=rwX,go=rX . ;',
