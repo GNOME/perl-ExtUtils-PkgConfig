@@ -45,8 +45,6 @@ DESCRIPTION
     you would've written yourself.
 
   USAGE
-    The module contains one function:
-
     HASH = ExtUtils::PkgConfig->find (STRING, [STRING, ...])
         Call pkg-config on the library specified by *STRING* (you'll have to
         know what to use here). The returned *HASH* contains the modversion,
@@ -60,14 +58,28 @@ DESCRIPTION
 
         For example:
 
-          *** can not find package bad1                                   
-          *** check that it is properly installed and available 
-          *** in PKG_CONFIG_PATH 
+          *** can not find package bad1
+          *** check that it is properly installed and available
+          *** in PKG_CONFIG_PATH
 
         or
 
           *** can't find cflags for gtk+-2.0
           *** is it properly installed and available in PKG_CONFIG_PATH?
+
+    STRING = ExtUtils::PkgConfig->create_version_macros (PACKAGE, STEM)
+        Create a set of version macros with the prefix *STEM* for the
+        library specified by *PACKAGE*. The result is returned.
+
+        Example input would be "gtk+-2.0" for *PACKAGE* and "GTK" for
+        *STEM*.
+
+    ExtUtils::PkgConfig->write_version_macros (FILE, PACKAGE, STEM,
+    [PACKAGE, STEM, ...])
+        Create one or more sets of version macros for the libraries and
+        prefixes specified by the *PACKAGE* and *STEM* pairs and write them
+        to the file *FILE*. If it doesn't exist, *FILE* will be created. If
+        it does exist, it will be overwritten.
 
 SEE ALSO
     ExtUtils::PkgConfig was designed to work with ExtUtils::Depends for
@@ -77,8 +89,8 @@ SEE ALSO
 
       L<http://gtk2-perl.sourceforge.net/>
 
-    This module is really just an interface to the pkg-config utility program.
-    http://www.freedesktop.org/Software/pkgconfig
+    This module is really just an interface to the pkg-config utility
+    program. http://www.freedesktop.org/Software/pkgconfig
 
 AUTHORS
     muppet <scott at asofyet dot org>.
