@@ -1,5 +1,10 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.01  Fri Oct 03 16:02:20 2003
+	- shuffle argument order to retain compatibility with newer versions
+	  of pkg-config 
+	- fixed some bugs with specfile creation
+
 1.00  Mon Sep 15 23:51:58 2003
 	- converted from Glib 1.00rc1's Glib::PkgConfig
 
