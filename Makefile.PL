@@ -9,6 +9,7 @@ use ExtUtils::MakeMaker;
 ***\n";
 
 WriteMakefile(
+    # FIXME this doesn't work very well with native win32 perl
     'dist' => {
            PREOP    => 'pod2text lib/ExtUtils/PkgConfig.pm | tee README >$(DISTVNAME)/README; chmod -R u=rwX,go=rX . ;',
            COMPRESS => 'gzip -9v',
@@ -22,6 +23,10 @@ package MY;
 use Cwd;
 sub postamble
 {
+	# none of this rpm stuff is useful on win32, and actually it can cause
+	# nmake to barf.
+	return "" if $^O eq 'MSWin32';
+
 	my @dirs = qw{$(RPMS_DIR) $(RPMS_DIR)/BUILD $(RPMS_DIR)/RPMS 
 		      $(RPMS_DIR)/SOURCES $(RPMS_DIR)/SPECS $(RPMS_DIR)/SRPMS};
 	my $cwd = getcwd();
@@ -61,4 +66,4 @@ dist-srpms :: Makefile dist perl-\$(DISTNAME).spec \$(RPMS_DIR)/
 	rpmbuild -bs --nodeps --define \"_topdir \$(RPMS_DIR)\" perl-\$(DISTNAME).spec
 "
 }
-package MAIN;
+package main;

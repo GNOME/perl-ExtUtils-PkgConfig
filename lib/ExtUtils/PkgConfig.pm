@@ -23,7 +23,7 @@ use Carp;
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.06';
+$VERSION = '1.07';
 
 sub import {
 	my $class = shift;

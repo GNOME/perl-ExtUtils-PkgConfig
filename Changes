@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.07  Sun Jan 23 13:22:03 EST 2005
+	- Disable the RPM-related postamble on Win32.  The 'date' command
+	  on windows is interactive, and caused Makefile.PL to hang.
+
 1.06  Sun Sep 19 23:29:23 CEST 2004
 	- Remove the "found package ..." message to make Makefile.PL's less
 	  verbose.
