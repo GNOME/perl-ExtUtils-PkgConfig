@@ -35,7 +35,8 @@ sub AUTOLOAD
 
 	my $ans = undef;
 	my $arg = shift;
-	if (grep {$_ eq $function} qw/libs modversion cflags libs-only-L libs-only-l/)
+	if (grep {$_ eq $function} qw/libs modversion cflags 
+				      libs-only-L libs-only-l/)
 	{
 		# simple
 		$ans = `pkg-config --$function \"$modulename\"`;
@@ -45,10 +46,12 @@ sub AUTOLOAD
 		# variable
 		$ans = `pkg-config --${function}=$arg \"$modulename\"`;
 	}
-	elsif (grep {$_ eq $function} qw/atleast-version exact-version max-version/)
+	elsif (grep {$_ eq $function} qw/atleast-version exact-version 
+					 max-version/)
 	{
 		# boolean
-		$ans = `(pkg-config --${function}=$arg \"$modulename\" && echo 1) || echo 0`;
+		$ans = not system (
+			"pkg-config --${function}=$arg \"$modulename\"");
 	}
 	else
 	{
