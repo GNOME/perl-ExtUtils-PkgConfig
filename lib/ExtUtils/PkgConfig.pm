@@ -94,7 +94,7 @@ sub find {
 		}
 	}
 
-	print "found package \"$pkg\", using it\n";
+	print STDERR "found package \"$pkg\", using it\n";
 	$data{pkg} = $pkg;
 	foreach my $what (qw/modversion cflags libs/) {
 		$data{$what} = `pkg-config --$what \"$pkg\"`;
