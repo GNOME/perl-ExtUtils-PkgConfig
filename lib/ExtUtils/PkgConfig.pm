@@ -23,7 +23,7 @@ use Carp;
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 sub AUTOLOAD 
 {
