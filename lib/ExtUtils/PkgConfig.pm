@@ -33,7 +33,7 @@ sub find {
 
 	# try as many pkg parameters are there are arguments left on stack
 	while( $pkg and 
-	       system "pkg-config $pkg --exists --silence-errors" )
+	       system "pkg-config \"$pkg\" --exists --silence-errors" )
 	{
 		push @pkgs, $pkg;
 		$pkg = shift;
@@ -54,13 +54,13 @@ sub find {
 	}
 	else
 	{
-		print "found package $pkg, using it\n";
+		print "found package \"$pkg\", using it\n";
 	}
 
 	foreach my $what (qw/modversion cflags libs/) {
-		$data{$what} = `pkg-config $pkg --$what`;
+		$data{$what} = `pkg-config \"$pkg\" --$what`;
                 $data{$what} =~ s/[\015\012]+$//;
-		croak "*** can't find $what for $pkg\n"
+		croak "*** can't find $what for \"$pkg\"\n"
 		    . "*** is it properly installed and available in PKG_CONFIG_PATH?\n"
 			unless $data{$what};
 	}
