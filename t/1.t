@@ -12,11 +12,12 @@ BEGIN { use_ok('ExtUtils::PkgConfig') };
 
 #########################
 
+$ENV{PKG_CONFIG_PATH} = './t/';
 
 my %pkg;
 
 # test 1 for success
-eval { %pkg = ExtUtils::PkgConfig->find(qw/glib-2.0/); };
+eval { %pkg = ExtUtils::PkgConfig->find(qw/test_glib-2.0/); };
 ok( not $@ );
 ok( $pkg{modversion} and $pkg{cflags} and $pkg{libs} );
 
@@ -25,7 +26,7 @@ eval { %pkg = ExtUtils::PkgConfig->find(qw/bad1/); };
 ok( $@ );
 
 # test 2 for success
-eval { %pkg = ExtUtils::PkgConfig->find(qw/bad1 glib-2.0/); };
+eval { %pkg = ExtUtils::PkgConfig->find(qw/bad1 test_glib-2.0/); };
 ok( not $@ );
 ok( $pkg{modversion} and $pkg{cflags} and $pkg{libs} );
 
