@@ -120,6 +120,7 @@ sub create_version_macros {
 
 		if( %data ) {
 			my @modversion = split /\./, $data{modversion};
+			$modversion[2] = 0 unless defined $modversion[2];
 
 			return <<__EOD__;
 #define $stem\_MAJOR_VERSION ($modversion[0])
