@@ -9,8 +9,8 @@ URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: pkgconfig
-BuildRequires: glib2-devel
 BuildRequires: perl >= 2:5.8.0
+BuildRequires: pkgconfig
 Source0: @SOURCE@
 
 %description
