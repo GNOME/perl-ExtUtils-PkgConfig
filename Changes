@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.03  Thu Feb 05 22:16:44 2004
+	- add two new functions: create_version_macros and
+	  write_version_macros.
+
 1.02  Tue Nov 04 21:51:44 2003
 	- heavily modifed patch by Alberto Manuel Brandão Simões appliled that 
 	  adds some autoload stuff to extend basic functionality.

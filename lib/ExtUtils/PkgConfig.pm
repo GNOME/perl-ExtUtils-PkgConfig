@@ -23,7 +23,7 @@ use Carp;
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.02';
+$VERSION = '1.03';
 
 sub AUTOLOAD 
 {
@@ -65,7 +65,6 @@ sub AUTOLOAD
 	return $ans;
 }
 
-
 sub find {
 	my $class = shift;
 	my $pkg = shift;
@@ -104,6 +103,45 @@ sub find {
 			unless $data{$what};
 	}
 	return %data;
+}
+
+sub create_version_macros {
+	my ($class, $pkg, $stem) = @_;
+
+	if( $pkg && $stem ) {
+		my %data = ExtUtils::PkgConfig->find ($pkg);
+
+		if( %data ) {
+			my @modversion = split /\./, $data{modversion};
+
+			return <<__EOD__;
+#define $stem\_MAJOR_VERSION ($modversion[0])
+#define $stem\_MINOR_VERSION ($modversion[1])
+#define $stem\_MICRO_VERSION ($modversion[2])
+#define $stem\_CHECK_VERSION(major,minor,micro) \\
+	($stem\_MAJOR_VERSION > (major) || \\
+	 ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION > (minor)) || \\
+	 ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION == (minor) && $stem\_MICRO_VERSION >= (micro)))
+__EOD__
+		}
+	}
+
+	return;
+}
+
+sub write_version_macros {
+	my ($class, $file, @pkgs) = @_;
+
+	open FILE, ">$file" or croak "*** can not open file $file for writing\n";
+
+	for (my $i = 0; $i < @pkgs; $i += 2) {
+		my $macros = ExtUtils::PkgConfig->create_version_macros ($pkgs[$i], $pkgs[$i+1]);
+		if( defined $macros ) {
+			print FILE $macros;
+		}
+	}
+
+	close FILE or croak "*** can not close file $file\n";
 }
 
 1;
@@ -159,8 +197,6 @@ written yourself.
 
 =head2 USAGE
 
-The module contains one function:
-
 =over
 
 =item HASH = ExtUtils::PkgConfig->find (STRING, [STRING, ...])
@@ -176,14 +212,28 @@ package.
 
 For example:
 
-  *** can not find package bad1                                   
-  *** check that it is properly installed and available 
-  *** in PKG_CONFIG_PATH 
+  *** can not find package bad1
+  *** check that it is properly installed and available
+  *** in PKG_CONFIG_PATH
 
 or
 
   *** can't find cflags for gtk+-2.0
   *** is it properly installed and available in PKG_CONFIG_PATH?
+
+=item STRING = ExtUtils::PkgConfig->create_version_macros (PACKAGE, STEM)
+
+Create a set of version macros with the prefix I<STEM> for the library
+specified by I<PACKAGE>.  The result is returned.
+
+Example input would be "gtk+-2.0" for I<PACKAGE> and "GTK" for I<STEM>.
+
+=item ExtUtils::PkgConfig->write_version_macros (FILE, PACKAGE, STEM, [PACKAGE, STEM, ...])
+
+Create one or more sets of version macros for the libraries and prefixes
+specified by the I<PACKAGE> and I<STEM> pairs and write them to the file
+I<FILE>.  If it doesn't exist, I<FILE> will be created.  If it does exist, it
+will be overwritten.
 
 =back
 
@@ -205,7 +255,7 @@ muppet E<lt>scott at asofyet dot orgE<gt>.
 Copyright 2003 by muppet, Ross McFarland, and the gtk2-perl team
 
 This library is free software; you can redistribute it and/or modify
-it under the terms of the Lesser General Public License (LGPL).  For 
+it under the terms of the Lesser General Public License (LGPL).  For
 more information, see http://www.fsf.org/licenses/lgpl.txt
 
 =cut
