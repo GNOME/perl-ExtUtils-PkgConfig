@@ -11,6 +11,30 @@ SYNOPSIS
      print "cflags:      $pkg_info{cflags}\n";
      print "libs:        $pkg_info{libs}\n";
 
+     $modversion = ExtUtils::PkgConfig->modversion($package);
+
+     $libs = ExtUtils::PkgConfig->libs($package);
+
+     $cflags = ExtUtils::PkgConfig->cflags($package);
+
+     $lib_only_L = ExtUtils::PkgConfig->libs_only_L($package);
+
+     $lib_only_l = ExtUtils::PkgConfig->libs_only_l($package);
+
+     $var_value = ExtUtils::PkgConfig->variable($package,$var);
+
+     if (ExtUtils::PkgConfig->atleast_version($package,$version)) {
+        ...
+     }
+
+     if (ExtUtils::PkgConfig->exact_version($package,$version)) {
+        ...
+     }
+
+     if (ExtUtils::PkgConfig->max_version($package,$version)) {
+        ...
+     }
+
 DESCRIPTION
     The pkg-config program retrieves information about installed libraries,
     usually for the purposes of compiling against and linking to them.
