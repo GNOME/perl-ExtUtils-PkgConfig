@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+x.xx  <date of release>
+	- In the version macro generator, handle non-numeric version number
+          parts by only using the leading digits.
+
 1.07  Sun Jan 23 13:22:03 EST 2005
 	- Disable the RPM-related postamble on Win32.  The 'date' command
 	  on windows is interactive, and caused Makefile.PL to hang.
