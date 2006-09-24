@@ -19,15 +19,15 @@ WriteMakefile(
     'VERSION_FROM' => 'lib/ExtUtils/PkgConfig.pm',
 );
 
-package MY;
 use Cwd;
-sub postamble
+
+sub MY::postamble
 {
 	# none of this rpm stuff is useful on win32, and actually it can cause
 	# nmake to barf.
 	return "" if $^O eq 'MSWin32';
 
-	my @dirs = qw{$(RPMS_DIR) $(RPMS_DIR)/BUILD $(RPMS_DIR)/RPMS 
+	my @dirs = qw{$(RPMS_DIR) $(RPMS_DIR)/BUILD $(RPMS_DIR)/RPMS
 		      $(RPMS_DIR)/SOURCES $(RPMS_DIR)/SPECS $(RPMS_DIR)/SRPMS};
 	my $cwd = getcwd();
 
@@ -38,7 +38,7 @@ sub postamble
 		'SOURCE' => '$(DISTNAME)-$(VERSION).tar.gz',
 		'DATE'    => $date,
 	);
-	
+
 	my $substitute = '$(PERL) -npe \''.join('; ', map {
 			"s/\\\@$_\\\@/$subs{$_}/g";
 		} keys %subs).'\'';
@@ -46,7 +46,7 @@ sub postamble
 "
 realclean ::
 	-\$(RM_F) perl-\$(DISTNAME).spec
-	
+
 RPMS_DIR=\$(HOME)/rpms
 
 \$(RPMS_DIR)/:
@@ -66,4 +66,3 @@ dist-srpms :: Makefile dist perl-\$(DISTNAME).spec \$(RPMS_DIR)/
 	rpmbuild -bs --nodeps --define \"_topdir \$(RPMS_DIR)\" perl-\$(DISTNAME).spec
 "
 }
-package main;
