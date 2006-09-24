@@ -1,9 +1,12 @@
 Changes
-lib/ExtUtils/PkgConfig.pm
-Makefile.PL
 MANIFEST
+MANIFEST.SKIP
+README
+lib/ExtUtils/PkgConfig.pm
 perl-ExtUtils-PkgConfig.spec.in
 t/1.t
-META.yml                                 Module meta-data (added by MakeMaker)
-README
+t/2.t
+t/3.t
+t/4.t
 t/test_glib-2.0.pc
+t/test_non_numeric.pc
