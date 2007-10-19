@@ -1,4 +1,5 @@
-use 5.006;
+BEGIN { require 5.006; }
+
 use ExtUtils::MakeMaker;
 
 # don't go any further if pkg-config cannot be found.
