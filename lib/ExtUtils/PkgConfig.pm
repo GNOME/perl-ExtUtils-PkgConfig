@@ -80,7 +80,7 @@ sub find {
 
 	# try as many pkg parameters are there are arguments left on stack
 	while( $pkg and 
-	       system "pkg-config --exists --silence-errors \"$pkg\"" )
+	       system "pkg-config --exists --print-errors \"$pkg\"" )
 	{
 		push @pkgs, $pkg;
 		$pkg = shift;
