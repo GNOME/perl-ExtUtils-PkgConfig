@@ -1,6 +1,6 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
-x.xx  <date of release>
+1.08  Fri Oct 19 22:04:08 CEST 2007
 	- In the version macro generator, handle non-numeric version number
           parts by only using the leading digits.
         - Make pkg-config print the errors it encounters so users know what went
