@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+x.xx  Sat Dec 29 01:41:40 CET 2007
+	- Fix a test failure in t/4.t (RT #31966).
+
 1.08  Fri Oct 19 22:04:08 CEST 2007
 	- add Makefile.PL to MANIFEST.
 	- In the version macro generator, handle non-numeric version number

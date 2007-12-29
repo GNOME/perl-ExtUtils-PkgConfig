@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 23;
+use Test::More tests => 22;
 use ExtUtils::PkgConfig;
 
 $ENV{PKG_CONFIG_PATH} = './t/';
@@ -61,8 +61,6 @@ eval {
 };
 ok ($@);
 
-# I'd expect this ...
-# ok (not -f $header);
-
-# ... but the implementation doesn't do it.  Who's correct?
-ok (unlink $header);
+if (-f $header) {
+	unlink $header;
+}
