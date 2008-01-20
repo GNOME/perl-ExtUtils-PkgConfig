@@ -1,10 +1,11 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
 x.xx  Sat Dec 29 01:41:40 CET 2007
-	- Fix a test failure in t/4.t (RT #31966).
 	- Add support for more pkg-config commands: cflags-only-I,
           cflags-only-other, libs-only-other, and static-libs (RT #32426, patch
           by Diab Jerius).
+	- Fix a test failure in t/4.t (RT #31966).
+	- Only print failure messages if appropriate; silence test suite.
 
 1.08  Fri Oct 19 22:04:08 CEST 2007
 	- add Makefile.PL to MANIFEST.

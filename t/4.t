@@ -8,6 +8,8 @@ use warnings;
 use Test::More tests => 22;
 use ExtUtils::PkgConfig;
 
+require 't/swallow_stderr.inc';
+
 $ENV{PKG_CONFIG_PATH} = './t/';
 
 sub contains {
@@ -30,8 +32,12 @@ ok (contains ($macros, 'TEST_MINOR_VERSION (0)'));
 ok (contains ($macros, 'TEST_MICRO_VERSION (4)'));
 ok (contains ($macros, 'TEST_CHECK_VERSION'));
 
-eval { $macros = ExtUtils::PkgConfig->create_version_macros (qw/__bad__/, 'BAD'); };
-ok ($@);
+swallow_stderr (sub {
+	eval {
+		ExtUtils::PkgConfig->create_version_macros (qw/__bad__/, 'BAD');
+	};
+	ok ($@);
+});
 
 my $header = 'eupc_test_tmp.h';
 
@@ -54,12 +60,14 @@ ok (contains ($macros, 'TEST_CHECK_VERSION'));
 ok (close $fh);
 ok (unlink $header);
 
-eval {
-  ExtUtils::PkgConfig->write_version_macros (
-	$header,
-	'__bad__' => 'BAD');
-};
-ok ($@);
+swallow_stderr (sub {
+	eval {
+	  ExtUtils::PkgConfig->write_version_macros (
+		$header,
+		'__bad__' => 'BAD');
+	};
+	ok ($@);
+});
 
 if (-f $header) {
 	unlink $header;

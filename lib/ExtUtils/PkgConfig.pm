@@ -20,6 +20,7 @@ package ExtUtils::PkgConfig;
 
 use strict;
 use Carp;
+use English qw(-no_match_vars); # avoid regex performance penalty
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
@@ -84,38 +85,49 @@ sub AUTOLOAD
 }
 
 sub find {
-	my $class = shift;
-	my $pkg = shift;
-	my %data = ();
-	my @pkgs;
+	my ($class, @pkg_candidates) = @_;
+	my (@pkgs_found, @error_messages);
 
-	# try as many pkg parameters are there are arguments left on stack
-	while( $pkg and 
-	       system "pkg-config --exists --print-errors \"$pkg\"" )
+	# try all package candidates and save all those that pkg-config
+	# recognizes
+	foreach my $candidate (@pkg_candidates)
 	{
-		push @pkgs, $pkg;
-		$pkg = shift;
+		my $output = qx/pkg-config --exists --print-errors "$candidate" 2>&1/;
+		if (0 == $CHILD_ERROR) {
+			push @pkgs_found, $candidate;
+		}
+		else
+		{
+			push @error_messages, $output;
+		}
 	}
 
-	unless( $pkg )
+	if (0 == scalar @pkgs_found)
 	{
-		if( @pkgs > 1 )
+		foreach my $message (@error_messages) {
+			carp $message;
+		}
+
+		if (@pkg_candidates > 1)
 		{
-			croak '*** can not find package for any of ('.join(', ',@pkgs).")\n"
+			my $list = join ', ', @pkg_candidates;
+			croak "*** can not find package for any of ($list)\n"
 			    . "*** check that one of them is properly installed and available in PKG_CONFIG_PATH\n";
 		}
 		else
 		{
-			croak "*** can not find package $pkgs[0]\n"
+			croak "*** can not find package $pkg_candidates[0]\n"
 			    . "*** check that it is properly installed and available in PKG_CONFIG_PATH\n";
 		}
 	}
 
-	$data{pkg} = $pkg;
+	# return the data of the package that was found first
+	my %data = ();
+	$data{pkg} = $pkgs_found[0];
 	foreach my $what (qw/modversion cflags libs/) {
-		$data{$what} = `pkg-config --$what \"$pkg\"`;
+		$data{$what} = `pkg-config --$what \"$data{pkg}\"`;
                 $data{$what} =~ s/[\015\012]+$//;
-		croak "*** can't find $what for \"$pkg\"\n"
+		croak "*** can't find $what for \"$data{pkg}\"\n"
 		    . "*** is it properly installed and available in PKG_CONFIG_PATH?\n"
 			unless $data{$what};
 	}
