@@ -17,11 +17,19 @@ SYNOPSIS
 
      $cflags = ExtUtils::PkgConfig->cflags($package);
 
-     $lib_only_L = ExtUtils::PkgConfig->libs_only_L($package);
+     $cflags_only_I = ExtUtils::PkgConfig->cflags_only_I($package);
 
-     $lib_only_l = ExtUtils::PkgConfig->libs_only_l($package);
+     $cflags_only_other = ExtUtils::PkgConfig->cflags_only_other($package);
 
-     $var_value = ExtUtils::PkgConfig->variable($package,$var);
+     $libs_only_L = ExtUtils::PkgConfig->libs_only_L($package);
+
+     $libs_only_l = ExtUtils::PkgConfig->libs_only_l($package);
+
+     $libs_only_other = ExtUtils::PkgConfig->libs_only_other($package);
+
+     $static_libs = ExtUtils::PkgConfig->static_libs($package);
+
+     $var_value = ExtUtils::PkgConfig->variable($package, $var);
 
      if (ExtUtils::PkgConfig->atleast_version($package,$version)) {
         ...
