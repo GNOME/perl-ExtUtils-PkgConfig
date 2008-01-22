@@ -1,6 +1,6 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
-x.xx  Sat Dec 29 01:41:40 CET 2007
+1.09  Tue Jan 22 21:34:35 CET 2008
 	- Add support for more pkg-config commands: cflags-only-I,
           cflags-only-other, libs-only-other, and static-libs (RT #32426, patch
           by Diab Jerius).
