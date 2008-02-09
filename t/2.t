@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 #
 # $Header$
 #
@@ -10,36 +11,43 @@ use ExtUtils::PkgConfig;
 
 $ENV{PKG_CONFIG_PATH} = './t/';
 
-my @cmds = qw(libs
-              modversion
-              cflags
-              cflags-only-I
-              cflags-only-other
-              libs-only-L
-              libs-only-l
-              libs-only-other);
-my $data;
+my ($major, $minor) = split /\./, `pkg-config --version`; # Ignore micro part
+diag ("Testing pkg-config $major.$minor");
 
-foreach my $cmd (@cmds) {
-	$data = ExtUtils::PkgConfig->$cmd(qw/test_glib-2.0/);
-	ok( defined $data );
+cmd_ok ('modversion');
+cmd_ok ('cflags');
+cmd_ok ('cflags-only-I');
+cmd_ok ('libs');
+cmd_ok ('libs-only-L');
+cmd_ok ('libs-only-l');
+
+SKIP: {
+  skip '*-only-other', 2
+    unless ($major > 0 || $minor >= 15);
+
+  cmd_ok ('cflags-only-other');
+  cmd_ok ('libs-only-other');
 }
 
-# special case
-$data = ExtUtils::PkgConfig->static_libs(qw/test_glib-2.0/);
-like ($data, qr/pthread/);
+SKIP: {
+  skip 'static libs', 1
+    unless ($major > 0 || $minor >= 18);
+
+  my $data = ExtUtils::PkgConfig->static_libs(qw/test_glib-2.0/);
+  like ($data, qr/pthread/);
+}
+
+my $data;
 
 $data = ExtUtils::PkgConfig->variable(qw/test_glib-2.0/, 'glib_genmarshal');
-ok( defined $data );
+ok (defined $data);
 
 $data = ExtUtils::PkgConfig->variable(qw/test_glib-2.0/, '__bad__');
-ok( not defined $data );
+ok (not defined $data);
 
-# Calling these with invalid packages is not supported.
-# foreach my $cmd (@cmds) {
-# 	eval { $data = ExtUtils::PkgConfig->$cmd(qw/__bad__/); };
-# 	ok( $@ );
-# }
+sub cmd_ok {
+  my ($cmd, $desc) = @_;
 
-# eval { $data = ExtUtils::PkgConfig->variable(qw/__bad__/, 'glib_genmarshal'); };
-# ok( $@ );
+  my $data = ExtUtils::PkgConfig->$cmd(qw/test_glib-2.0/);
+  ok (defined $data, $desc);
+}
