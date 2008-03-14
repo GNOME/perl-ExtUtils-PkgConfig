@@ -3,11 +3,20 @@ BEGIN { require 5.006; }
 use ExtUtils::MakeMaker;
 
 # don't go any further if pkg-config cannot be found.
-`pkg-config --version` or die "***
+my $have_pkg_config = `pkg-config --version`;
+
+if ($have_pkg_config eq "") {
+	# Warn and exit with status 0 to indicate (to the user and the CPAN
+	# testers infrastructure) that this module won't work on this machine.
+	warn <<"__EOW__";
+***
 *** ExtUtils::PkgConfig requires the pkg-config utility, but it doesn't
-*** seem to be in your PATH.  it is correctly installed?
+*** seem to be in your PATH.  Is it correctly installed?
 ***  PATH=$ENV{PATH}
-***\n";
+***
+__EOW__
+	exit 0;
+}
 
 WriteMakefile(
     # FIXME this doesn't work very well with native win32 perl
