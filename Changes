@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+x.xx  Sat Mar 15 00:27:35 CET 2008
+	- Fix test failures.
+
 1.10  Sat Feb  9 20:29:22 CET 2008
 	- Fix test failures with older versions of perl and pkg-config.
 

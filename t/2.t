@@ -31,7 +31,7 @@ SKIP: {
 
 SKIP: {
   skip 'static libs', 1
-    unless ($major > 0 || $minor >= 18);
+    unless ($major > 0 || $minor >= 20);
 
   my $data = ExtUtils::PkgConfig->static_libs(qw/test_glib-2.0/);
   like ($data, qr/pthread/);
