@@ -1,4 +1,6 @@
+~$
 .bak$
 .cvsignore
 CVS
 Makefile$
+blib
