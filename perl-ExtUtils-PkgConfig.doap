@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">ExtUtils::PkgConfig</name>
-  <shortdesc xml:lang="en">Simplistic interface to pkg−config</shortdesc>
+  <shortdesc xml:lang="en">Simplistic interface to pkg-config</shortdesc>
   <homepage rdf:resource="http://gtk2-perl.sourceforge.net/" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gtk-perl-list" />
 
