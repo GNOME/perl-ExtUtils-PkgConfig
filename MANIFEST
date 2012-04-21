@@ -3,6 +3,7 @@ lib/ExtUtils/PkgConfig.pm
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
+perl-ExtUtils-PkgConfig.doap
 perl-ExtUtils-PkgConfig.spec.in
 README
 t/1.t

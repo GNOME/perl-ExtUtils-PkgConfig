@@ -1,6 +1,7 @@
 ~$
-.bak$
-.cvsignore
-CVS
+\.bak$
+\.gitignore$
+\.git
 Makefile$
+MYMETA\.*
 blib
