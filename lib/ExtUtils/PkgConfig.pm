@@ -142,6 +142,7 @@ sub create_version_macros {
 
 		if( %data ) {
 			my @modversion = split /\./, $data{modversion};
+			$modversion[1] = 0 unless defined $modversion[1];
 			$modversion[2] = 0 unless defined $modversion[2];
 
 			# If a version part contains non-numeric characters,
