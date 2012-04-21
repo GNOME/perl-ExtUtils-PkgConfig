@@ -12,7 +12,6 @@ use ExtUtils::PkgConfig;
 $ENV{PKG_CONFIG_PATH} = './t/';
 
 my ($major, $minor) = split /\./, `pkg-config --version`; # Ignore micro part
-diag ("Testing pkg-config $major.$minor");
 
 cmd_ok ('modversion');
 cmd_ok ('cflags');

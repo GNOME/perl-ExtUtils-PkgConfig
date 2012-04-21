@@ -14,6 +14,9 @@ require 't/swallow_stderr.inc';
 
 #########################
 
+my ($major, $minor) = split /\./, `pkg-config --version`;
+diag ("Testing against pkg-config $major.$minor");
+
 $ENV{PKG_CONFIG_PATH} = './t/';
 
 my %pkg;
