@@ -23,7 +23,7 @@ use English qw(-no_match_vars); # avoid regex performance penalty
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.12';
+$VERSION = '1.13';
 
 sub import {
 	my $class = shift;

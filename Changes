@@ -1,7 +1,8 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
-<next>
-        - Correctly handle major-only versions, like '2' (RT #68246).
+1.13  Fri Apr 27 20:27:30 PDT 2012
+    - Correctly handle major-only versions, like '2' (RT #68246).
+    - Updated FSF address and copyrights
 
 1.12  Sun Oct 19 13:56:07 CEST 2008
 	- Try to fix a test failure.
