@@ -1,4 +1,4 @@
-# Copyright (c) 2003-2004 by the gtk2-perl team (see the file AUTHORS)
+# Copyright (c) 2003-2004, 2012 by the gtk2-perl team (see the file AUTHORS)
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Library General Public
@@ -11,10 +11,9 @@
 # Library General Public License for more details.
 #
 # You should have received a copy of the GNU Library General Public
-# License along with this library; if not, write to the 
-# Free Software Foundation, Inc., 59 Temple Place - Suite 330, 
-# Boston, MA  02111-1307  USA.
-
+# License along with this library; if not, write to the
+# Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 
 package ExtUtils::PkgConfig;
 
@@ -33,7 +32,7 @@ sub import {
 		if $VERSION < $_[0];
 }
 
-sub AUTOLOAD 
+sub AUTOLOAD
 {
 	my $class = shift;
 	my $modulename = shift;
@@ -305,7 +304,7 @@ muppet E<lt>scott at asofyet dot orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2003-2004 by muppet, Ross McFarland, and the gtk2-perl team
+Copyright 2003-2004, 2012 by muppet, Ross McFarland, and the gtk2-perl team
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the Lesser General Public License (LGPL).  For
