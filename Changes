@@ -1,5 +1,11 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.14  Sun Feb  3 17:51:54 PDT 2013
+    - Skip tests for pkg-config binary with the '--max-version' switch on
+      OpenBSD 5.2, due to a bug in OpenBSD's implemenation of 'pkg-config'
+    - Updated Makefile.PL to use a META_MERGE block with WriteMakefile(); this
+      block is what MetaCPAN reads when generating page output
+
 1.13  Fri Apr 27 20:27:30 PDT 2012
     - Correctly handle major-only versions, like '2' (RT #68246).
     - Updated FSF address and copyrights

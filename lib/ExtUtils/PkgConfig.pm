@@ -1,4 +1,5 @@
-# Copyright (c) 2003-2004, 2012 by the gtk2-perl team (see the file AUTHORS)
+# Copyright (c) 2003-2004, 2012-2013 by the gtk2-perl team (see the file
+# AUTHORS)
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Library General Public
@@ -23,7 +24,7 @@ use English qw(-no_match_vars); # avoid regex performance penalty
 
 use vars qw/ $VERSION $AUTOLOAD/;
 
-$VERSION = '1.13';
+$VERSION = '1.14';
 
 sub import {
 	my $class = shift;
@@ -304,7 +305,8 @@ muppet E<lt>scott at asofyet dot orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2003-2004, 2012 by muppet, Ross McFarland, and the gtk2-perl team
+Copyright 2003-2004, 2012-2013 by muppet, Ross McFarland, and the gtk2-perl
+team
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the Lesser General Public License (LGPL).  For
