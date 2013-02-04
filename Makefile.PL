@@ -18,15 +18,44 @@ __EOW__
 	exit 0;
 }
 
+my %meta_merge = (
+        q(meta-spec)          => {
+            version => '2',
+            url     => 'http://search.cpan.org/perldoc?CPAN::Meta::Spec',
+        },
+        author              =>
+            ['gtk2-perl Team <gtk-perl-list at gnome dot org>'],
+        release_status      => 'stable',
+        # valid values: https://metacpan.org/module/CPAN::Meta::Spec#license
+        license             => 'lgpl_2_1',
+        resources => {
+            license     => 'http://www.gnu.org/licenses/lgpl-2.1.html',
+            homepage    => 'http://gtk2-perl.sourceforge.net',
+            x_MailingList =>
+                'https://mail.gnome.org/mailman/listinfo/gtk-perl-list',
+            bugtracker  => {
+                    web     =>
+                    'http://rt.cpan.org/Public/Dist/Display.html?Name=ExtUtils-PkgConfig',
+                    mailto  => 'bug-ExtUtils-PkgConfig [at] rt.cpan.org',
+            },
+            repository  => {
+                    url     => 'git://git.gnome.org/perl-ExtUtils-PkgConfig',
+                    type    => 'git',
+                    web     => 'http://git.gnome.org/browse/perl-ExtUtils-PkgConfig',
+            },
+        },
+);
+
 WriteMakefile(
+    'NAME' => 'ExtUtils::PkgConfig',
+    'VERSION_FROM' => 'lib/ExtUtils/PkgConfig.pm',
     # FIXME this doesn't work very well with native win32 perl
     'dist' => {
            PREOP    => 'pod2text lib/ExtUtils/PkgConfig.pm | tee README >$(DISTVNAME)/README; chmod -R u=rwX,go=rX . ;',
            COMPRESS => 'gzip -9v',
            SUFFIX   => '.gz',
     },
-    'NAME' => 'ExtUtils::PkgConfig',
-    'VERSION_FROM' => 'lib/ExtUtils/PkgConfig.pm',
+    'META_MERGE'    => \%meta_merge,
 );
 
 use Cwd;
