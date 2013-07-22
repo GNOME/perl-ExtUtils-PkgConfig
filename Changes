@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+x.xx  <date>
+    - Gracefully handle empty fields in pkg-config files.
+
 1.14  Sun Feb  3 17:51:54 PDT 2013
     - Skip tests for pkg-config binary with the '--max-version' switch on
       OpenBSD 5.2, due to a bug in OpenBSD's implemenation of 'pkg-config'

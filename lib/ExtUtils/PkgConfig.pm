@@ -129,7 +129,7 @@ sub find {
                 $data{$what} =~ s/[\015\012]+$//;
 		croak "*** can't find $what for \"$data{pkg}\"\n"
 		    . "*** is it properly installed and available in PKG_CONFIG_PATH?\n"
-			unless $data{$what};
+			unless defined $data{$what};
 	}
 	return %data;
 }
