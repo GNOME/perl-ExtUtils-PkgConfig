@@ -84,6 +84,20 @@ sub AUTOLOAD
 	return $ans;
 }
 
+sub exists {
+	my ($class, @pkg_candidates) = @_;
+	
+	foreach my $candidate (@pkg_candidates)
+	{
+		my $output = qx/pkg-config --exists "$candidate" 2>&1/;
+		if (0 == $CHILD_ERROR) {
+			return 1;
+		}
+	}
+	
+	return '';
+}
+
 sub find {
 	my ($class, @pkg_candidates) = @_;
 	my (@pkgs_found, @error_messages);
@@ -202,6 +216,8 @@ ExtUtils::PkgConfig - simplistic interface to pkg-config
  print "modversion:  $pkg_info{modversion}\n";
  print "cflags:      $pkg_info{cflags}\n";
  print "libs:        $pkg_info{libs}\n";
+
+ $exists = ExtUtils::PkgConfig->exists($package);
 
  $modversion = ExtUtils::PkgConfig->modversion($package);
 
