@@ -10,7 +10,7 @@ use warnings;
 use Test::More tests => 7;
 BEGIN { use_ok('ExtUtils::PkgConfig') };
 
-require 't/swallow_stderr.inc';
+require './t/swallow_stderr.inc';
 
 #########################
 

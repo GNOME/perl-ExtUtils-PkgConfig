@@ -8,7 +8,7 @@ use warnings;
 use Test::More tests => 24;
 use ExtUtils::PkgConfig;
 
-require 't/swallow_stderr.inc';
+require './t/swallow_stderr.inc';
 
 $ENV{PKG_CONFIG_PATH} = './t/';
 
