@@ -1,5 +1,9 @@
 Revision history for Perl extension ExtUtils::PkgConfig.
 
+1.16  Thu Apr 20 18:51:36 PDT 2017
+    - Add exists() method, and update README (RT#77880)
+    - Handle removal of '.' from @INC for Perl 5.24 (RT#120819)
+
 1.15  Sat Sep 28 22:14:31 PDT 2013
     - Gracefully handle empty fields in pkg-config files.
 
