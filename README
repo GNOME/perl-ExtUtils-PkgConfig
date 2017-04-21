@@ -11,6 +11,8 @@ SYNOPSIS
      print "cflags:      $pkg_info{cflags}\n";
      print "libs:        $pkg_info{libs}\n";
 
+     $exists = ExtUtils::PkgConfig->exists($package);
+
      $modversion = ExtUtils::PkgConfig->modversion($package);
 
      $libs = ExtUtils::PkgConfig->libs($package);
